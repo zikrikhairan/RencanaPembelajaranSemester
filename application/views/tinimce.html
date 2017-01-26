@@ -1,0 +1,44 @@
+<?php
+if(isset($_POST['simpan'])){
+ $isi = addslashes($_POST['isi']);
+
+ mysql_connect("localhost","root","");
+ mysql_select_db("db_tiny");
+
+ mysql_query("insert into tiny(judul, isi) values('$_POST[judul]','$isi')");
+}
+?>
+<!doctype html>
+<html>
+<head>
+ <title>TinyMCE MySQL</title>
+ <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+ <script type="text/javascript">
+ tinymce.init({
+     selector: "textarea",
+     plugins: [
+         "advlist autolink lists link image charmap print preview anchor",
+         "searchreplace visualblocks code fullscreen",
+         "insertdatetime media table contextmenu paste"
+     ],
+     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+ });
+ </script>
+</head>
+<body>
+
+<form method="post" action="">
+Judul : <input type="text" name="judul" maxlength="50">
+<br><br>
+isi Berita :<br>
+<textarea name="isi" rows="15" cols="80">
+
+</textarea>
+<br>
+<input type="submit" name="simpan" value="Simpan">
+<input type="reset" value="Batal">
+</form>
+
+</body>
+</html>
+
